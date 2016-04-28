@@ -40,11 +40,9 @@ for sub in start.xpath('//*[@id="content"]/ul/li/ul/li/a'):
     thread_xpath = '//*[@id="content"]/ol/li/a'
     subforum = sub.text
     for thread in first_page.xpath(thread_xpath):
-        print thread.text
         scrape_thread(thread)
     pages = first_page.xpath('//*[@id="pagenumbers"]/a')
     if pages:
         for page in pages:
             for thread in html.parse(page.attrib['href']).xpath(thread_xpath):
-                print thread.text
                 scrape_thread(thread)
