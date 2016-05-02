@@ -20,6 +20,9 @@ def scrape_thread(thread):
 
         if id > 0:
             reply_to = qid+"_top"
+			unique = qid+'_'+str(id-1)
+		else:
+		    unique = qid+'_top'
         poster = post.xpath('//div[@class="username"]/text()')[0]
         date = post.xpath('//div[@class="date"]/text()')[0]
         content = post.xpath('//div[@class="posttext"]')[0].text_content()
@@ -27,7 +30,8 @@ def scrape_thread(thread):
             if p in content:
                 inferred_replies.add(p)
         posters.add(poster)
-        w.writerow([qid+'_'+str(id-1), qid, id-1, title, poster, date, reply_to, content, ' | '.join(inferred_replies), subforum])
+
+        w.writerow([unique, qid, id-1, title, poster, date, reply_to, content, ' | '.join(inferred_replies), subforum])
         f.flush()
 
 start = html.parse("http://www.cancerforums.net/archive/index.php")
