@@ -20,7 +20,7 @@ def scrape_thread(thread):
 
         if id > 0:
             reply_to = qid+"_top"
-			unique = qid+'_'+str(id-1)
+	    unique = qid+'_'+str(id-1)
 		else:
 		    unique = qid+'_top'
         poster = post.xpath('//div[@class="username"]/text()')[0]
